@@ -1,0 +1,79 @@
+\documentclass[a4paper]{article}
+\usepackage[left=2.5cm,top=2.5cm,right=2.5cm,bottom=3cm]{geometry} 
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{blindtext}
+\usepackage{mathdots} % para el comando \iddots
+\usepackage{mathrsfs} % para formato de letra
+\usepackage{marvosym}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{parskip}
+
+
+\title{\textbf{HW7: Introduction to Financial Engineering}}
+\author{Miguel Angel Aguilo Gonzalez, 1699413 \\ Judit de Paz Ramírez, 1570590 \\ Laia Mòdol Rodríguez, 1565282 \\ Elena Rubio Zabala, 1699049 \\ Guillem Tutusaus Alcaraz, 1533701 } 
+\date{Diciembre 2023}
+
+\begin{document}
+\maketitle
+
+\newpage
+Westcott-Smith, una empresa privada especializada en la gestión de inversiones, tiene que tomar una decisión. Ésta quiere adquirir una empresa de asesoramiento de inversiones, así pues, se ha visto con la necesidad de realizar un estudio, ya que, ha recibido dos propuestas de adquisición, provenientes de las Empresas A y B con valores de 2 y 3 millones de euros respectivamente. Con un presupuesto máximo de adquisición establecido en 4 millones de euros, hemos realizado un análisis para determinar la opción más rentable y acorde con los objetivos financieros de Westcott-Smith. 
+
+Para llevar a cabo el análisis financiero, vamos a estudiar que empresas debería comprar Westcott-Smith de acuerdo con la regla del NPV y de acuerdo con la regla IRR. Los datos de las empresas candidatas son los siguientes:
+\begin{itemize}
+    \item \textbf{Empresa A:} tiene un precio de 2 millones de euros con una rentabilidad estimada de 300.000 euros anuales con perpetuidad. El costo de oportunidad del capital en relación con la realización del proyecto es del 12\%.
+    
+    \item \textbf{Empresa B:} tiene un precio de 3 millones de euros con una rentabilidad estimada de 450.000 euros anuales con perpetuidad. El costo de oportunidad del capital en relación con la realización del proyecto es del 12\%.
+\end{itemize}
+
+Empezaremos estudiando el NPV, éste describe una forma de caracterizar el valor de una inversión y la regla asociada al cálculo para elegir entre inversiones alternativas. Se calcula mediante la siguiente formula
+\begin{equation}
+    NPV=\sum_{t=0}^N \frac{CF_i}{(1+r)^t}
+    \label{NPV}
+\end{equation}
+dónde $CF_i$ es el flujo de efectivo neto esperado en el tiempo $t$, $N$ es la vida proyectada de la inversión y $r$ es la tasa de descuento o el coste de oportunidad del capital. 
+
+Además la regla del NPV establece que si una inversión tiene un NPV positivo, entonces debería llevarse a cabo. En el caso de tener proyectos mutuamente exclusivos, el inversor debería tomar el que tenga un NPV más alto. 
+
+Una vez tenemos todos los conceptos claros, calculamos el valor presente neto de cada empresa
+\begin{itemize}
+    \item \textbf{Empresa A.} Sustituyendo los datos en la fórmula (\ref{NPV}), teniendo en cuenta la perpetuidad, obtenemos
+    $$NPV=-2.000.000+\sum_{t=1}^{\infty}\frac{300.000}{(1+0,12)^t}=-2.000.000+\frac{300.000}{0,12}=500.000$$
+    El valor actual neto de la Empresa A es de 500.000\EUR.
+    \item \textbf{Empresa B.} De manera similar a la anterior obtenemos
+    $$NPV=-3.000.000+\sum_{t=1}^{\infty}\frac{450.000}{(1+0,12)^t}=-3.000.000+\frac{450.000}{0,12}=750.000$$
+    El valor actual neto de la Empresa B es de 750.000\EUR. 
+\end{itemize}
+Podemos ver que ambas empresas cumplen con la regla del NPV ya que hemos obtenido valores positivos, esta nos dice que podemos aceptar los dos proyector. Pero, tal y como hemos dicho, cuando tenemos que elegir entre dos empresas que cumplen la regla del NPV, nos tenemos que quedar con el NPV más alto. 
+
+En el caso de Westcott-Smith tendría que invertir en la Empresa B, ya que ésta les produciría una mayor ganancia.
+
+A continuación estudiamos el IRR, éste representa en un solo número el rendimiento de la inversión generado por un proyecto. Por definición, la tasa interna de rentabilidad es la tasa de descuento que hace que el valor actual neto sea igual a cero. Su formula es
+\begin{equation}
+    NPV=\sum_{t=0}^{N}\frac{CF_i}{(1+IRR)^t}
+    \label{IRR}
+\end{equation}
+dónde tenemos las mismas variables que la ecuación (\ref{NPV}) cambiando $r$ por $IRR$. 
+
+La regla de decisión utilizando la tasa interna de rentabilidad establece que aceptamos proyectos e inversiones cuando la IRR sea mayor que el coste de oportunidad del capital. 
+
+Calculamos ahora cúal es la tasa interna de rentabilidad de cada empresa
+\begin{itemize}
+    \item \textbf{Empresa A.} Sabiendo que $NPV=0$, procedemos a aislar la variable $IRR$ de la formula ($\ref{IRR}$). De esta manera obtenemos
+    $$0=-2.000.000+\sum_{t=1}^{\infty}\frac{300.000}{(1+IRR)^t}=-2.000.000+\frac{300.000}{IRR}\Longleftrightarrow IRR=\frac{300.000}{2.000.000}=0,15 $$
+    Así pues, la Empresa A tiene una tasa interna de rentabilidad del 15\%.
+    \item \textbf{Empresa B.} Aislamos la variable $IRR$ de la misma manera, obteniendo
+    $$0=-3.000.000+\sum_{t=1}^{\infty}\frac{450.000}{(1+IRR)^t}=-3.000.000+\frac{450.000}{IRR}\Longleftrightarrow IRR=\frac{450.000}{3.000.000}=0,15 $$
+    La Empresa B tiene una tasa interna de rentabilidad del 15\%.
+\end{itemize}
+Podemos ver que ambas empresas tienen una tasa interna de rentabilidad mayor que el coste de oportunidad. De esta manera, siguiendo la regla del IRR, podemos aceptar ambos proyectos sin poder decir cúal de los dos producirá a Westcott-Smith una ganancia mayor.
+
+En conclusión, Westcott-Smith ha recibido dos propuestas de adquisición favorables. Mediante la regla del NPV y la regla del IRR hemos visto que ambas empresas le convienen. En particular, Westcott-Smith debería comprar la Empresa B porque es la que le aportaría una mayor ganancia. 
+\end{document}
